@@ -1,0 +1,50 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Include the above in your HEAD tag -->
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="main">
+
+
+<div class="container">
+
+<div class="middle">
+
+      <div id="login">
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+
+          <fieldset class="clearfix">
+
+            <p><span class="fa fa-user"></span><input   Placeholder="Username" formControlName="useri" required></p>
+            <p><span class="fa fa-lock"></span><input   Placeholder="email" formControlName="email" required></p>
+
+             <div>
+                  <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#">
+                    </a></span>
+                  <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Login"></span>
+              </div>
+
+          </fieldset>
+          <div class="clearfix"></div>
+        </form>
+
+        <div class="clearfix"></div>
+
+      </div> <!-- end login -->
+      <div class="login-main-text">
+        <h2>AlMaximo Consultoría TI<br> Práctica Web-Java</h2>
+        <p>Login.</p>
+     </div>
+
+      </div>
+
+    </div>
+
+</div>

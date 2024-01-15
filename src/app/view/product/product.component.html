@@ -1,0 +1,120 @@
+<app-header></app-header>
+<div class="container">
+  <div class="alert alert-dark" role="alert">
+    Listado Productos
+  </div>
+  <div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button type="button" class="btn btn-secondary" (click)="AbrirModal(addProduct)">Nuevo</button>
+        <form class="d-flex" role="search">
+          <input [formControl]="ctrlType" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" (click)="findBykey()">Clave</button>
+
+        </form>
+        <mat-icon (click)="refresh()">autorenew</mat-icon>
+        <div>
+
+          <button mat-button [matMenuTriggerFor]="menu">Buscar por tipo</button>
+            <mat-menu #menu="matMenu">
+            <button (click)="findBytype1()" mat-menu-item>Electrónicos</button>
+            <button (click)="findBytype2()" mat-menu-item>Muebles</button>
+            <button (click)="findBytype3()" mat-menu-item>Deportes</button>
+            <button (click)="findBytype4()" mat-menu-item>Hogar</button>
+            </mat-menu>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z8">
+
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="intid">
+      <th mat-header-cell *matHeaderCellDef> ID. </th>
+      <td mat-cell *matCellDef="let element"> {{element.intid}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="strname">
+      <th mat-header-cell *matHeaderCellDef> Producto </th>
+      <td mat-cell *matCellDef="let element"> {{element.strname}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="strkey">
+      <th mat-header-cell *matHeaderCellDef> Clave Producto </th>
+      <td mat-cell *matCellDef="let element"> {{element.strkey}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="intprice">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element"> {{element.intprice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element"> <mat-icon (click)="goEditProduct(element.intid, element.strname)">edit</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;<mat-icon (click)="goDeleteProduct(element.intid)">delete</mat-icon> </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<!--MODAL EDIT PROVEDOR-->
+
+<ng-template #addProduct let modal>
+  <div class="modal-header">
+      <h4 class="modal-title">
+          &nbsp;&nbsp;
+          Agregar Producto
+      </h4>
+      <button class="close" aria-label="close" type="button"  (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+
+  </div>
+  <div class="modal-body">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+      <div class="container-fluid">
+
+
+        <form class="d-flex" role="search">
+          <input  class="form-control me-2" type="search" [formControl]="ctrlKey" placeholder="Clave:" aria-label="Search">
+          <input  class="form-control me-2" type="search" [formControl]="ctrlName" placeholder="Nombre:" aria-label="Search">
+          <input  class="form-control me-2" type="search" [formControl]="ctrlPrice" placeholder="Precio $:" aria-label="Search">
+        </form>
+        <mat-checkbox class="example-margin"  (click)="selectkAvalible()">Activo!</mat-checkbox>
+
+
+        <div>
+
+          <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option  (click)="findTypeP1()">Electrónicos</mat-chip-option>
+            <mat-chip-option  (click)="findTypeP2()">Muebles</mat-chip-option>
+            <mat-chip-option  (click)="findTypeP3()">Deportes</mat-chip-option>
+            <mat-chip-option  (click)="findTypeP4()">Hogar</mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button  color="warn" (click)="cerrarModal()">cancelar</button>
+    <button mat-raised-button  color="primary" (click)="saveProduct()">Guardar</button>
+  </div>
+</ng-template>
+
+
+
